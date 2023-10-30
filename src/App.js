@@ -7,11 +7,16 @@ import Register from "./routes/Register";
 import {Toaster} from "react-hot-toast";
 import { messaging } from "./firebase/index";
 import { getToken } from "firebase/messaging";
- export const AppContext = createContext(null);
+import { onMessage } from "firebase/messaging"; 
+
+export const AppContext = createContext(null);
 function App() {
  const [route , setRoute] = useState("home");
 const [user , setUser] = useState(null);
 
+  onMessage(messaging , payload =>{
+    console.log("Nueva notificacion ", payload)
+  });
   async function requestPermission(){
     console.log("LLAMANDO A L A FUNCION")
     const permission = await Notification.requestPermission();
@@ -35,7 +40,7 @@ const [user , setUser] = useState(null);
         <Toaster/>
       <Header/>
       <main className= "p-6">
-        <h1>Este AHORA</h1>
+      
           {route ==="home" && <Home/>}
 
           {route ==="login" && <Login/>}
