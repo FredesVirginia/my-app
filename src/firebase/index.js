@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 
 
-import { getMessaging, getToken } from "firebase/messaging";
+import { getMessaging } from "firebase/messaging";
 
 
 
@@ -18,18 +18,6 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
- const app = initializeApp(firebaseConfig);
-
- const vapidKey = "BETlaoi-RhzF7UspHOJl2sUvah9xQh_hWJtulY9x8mleV_Kgmh8pQkg6HxoOUZLXFTF_qqVgh7ko6NGd0TWGUhc"
-  const messaging = getMessaging(app);
-  getToken(messaging , {vapidKey})
-      .then(currentToken =>{
-        if(currentToken){
-          console.log("El token es " , currentToken);
-        } else{
-          console.log("No registration")
-        }
-      }).catch((error)=>{
-        console.log("Ocurrio un error");
-        console.log(error);
-      })
+export const app = initializeApp(firebaseConfig);
+export const messaging = getMessaging(app);
+ 
