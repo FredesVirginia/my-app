@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 
 
-import { getMessaging } from "firebase/messaging";
+import { getMessaging , getToken} from "firebase/messaging";
 
 
 
@@ -19,5 +19,17 @@ const firebaseConfig = {
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
-export const messaging = getMessaging(app);
- 
+export const messaging =  getMessaging(app);
+ export const tokeen =  async ()=>{
+  console.log("LLAMANDO A L A FUNCION desde index.js firebase")
+  const permission = await Notification.requestPermission();
+  if(permission === "granted"){
+    console.log("POR EL PERMITIDO")
+        //Generate Token
+    const token = await getToken(messaging , {vapidKey : "BETlaoi-RhzF7UspHOJl2sUvah9xQh_hWJtulY9x8mleV_Kgmh8pQkg6HxoOUZLXFTF_qqVgh7ko6NGd0TWGUhc"})
+      console.log("EL TOKEN ES " , token)
+  
+  }else if(permission === "denied"){
+    alert("YOU DENIED FOR THE NOTIFICATION")
+  }
+ }

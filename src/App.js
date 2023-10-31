@@ -4,8 +4,8 @@ import Header from "./components/Header";
 import Home from "./routes/Home";
 import Login from "./routes/Login";
 import Register from "./routes/Register";
-import {Toaster} from "react-hot-toast";
-import { messaging } from "./firebase/index";
+import toast, {Toaster} from "react-hot-toast";
+import { messaging , tokeen } from "./firebase/index";
 import { getToken } from "firebase/messaging";
 import { onMessage } from "firebase/messaging"; 
 
@@ -16,22 +16,12 @@ const [user , setUser] = useState(null);
 
   onMessage(messaging , payload =>{
     console.log("Nueva notificacion ", payload)
+    toast(payload.notification.body);
   });
-  async function requestPermission(){
-    console.log("LLAMANDO A L A FUNCION")
-    const permission = await Notification.requestPermission();
-    if(permission === "granted"){
-      console.log("POR EL PERMITIDO")
-          //Generate Token
-      const token = await getToken(messaging , {vapidKey : "BETlaoi-RhzF7UspHOJl2sUvah9xQh_hWJtulY9x8mleV_Kgmh8pQkg6HxoOUZLXFTF_qqVgh7ko6NGd0TWGUhc"})
-        console.log("EL TOKEN ES " , token)
-    
-    }else if(permission === "denied"){
-      alert("YOU DENIED FOR THE NOTIFICATION")
-    }
-  }
+ 
     useEffect(() => {
-      requestPermission()
+      console.log("Por el useeffect del toekn en appjs. ")
+    tokeen()
     },
      []);
   return (
