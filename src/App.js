@@ -9,6 +9,7 @@ import toast, {Toaster} from "react-hot-toast";
 import { messaging , tokeen } from "./firebase/index";
 import { getToken } from "firebase/messaging";
 import { onMessage } from "firebase/messaging"; 
+import Footer from "./components/Footer";
 
 export const AppContext = createContext(null);
 function App() {
@@ -30,8 +31,8 @@ const [user , setUser] = useState(null);
     	  <div className="h-screen">
         <Toaster/>
       <Header/>
-      <h1>HOLA</h1>
-      <main className= "p-6">
+      <h1>HOLArthtrhtrrt</h1>
+      <main className= "p-6 mt-20">
       
           {route ==="home" && <Home/>}
 
@@ -40,9 +41,7 @@ const [user , setUser] = useState(null);
           {route === "shooping" && <Shooping/>}
           {user && <p>Usuario logueado : {user.email}</p>}
       </main>
-      <footer className="fixed h-16  bg-blue-400 bottom-0">
-        <h2>Hola</h2>
-      </footer>
+      <Footer/>
     </div>
    </AppContext.Provider>
   );
