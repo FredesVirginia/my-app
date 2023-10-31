@@ -30,6 +30,7 @@ const [user , setUser] = useState(null);
     	  <div className="h-screen">
         <Toaster/>
       <Header/>
+      <h1>HOLA</h1>
       <main className= "p-6">
       
           {route ==="home" && <Home/>}
