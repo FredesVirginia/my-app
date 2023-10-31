@@ -27,9 +27,17 @@ export const messaging =  getMessaging(app);
     console.log("POR EL PERMITIDO")
         //Generate Token
     const token = await getToken(messaging , {vapidKey : "BETlaoi-RhzF7UspHOJl2sUvah9xQh_hWJtulY9x8mleV_Kgmh8pQkg6HxoOUZLXFTF_qqVgh7ko6NGd0TWGUhc"})
-      console.log("EL TOKEN ES " , token)
+      console.log("EL TOKEN ES " , token);
+      sendTokenServer(token);
   
   }else if(permission === "denied"){
     alert("YOU DENIED FOR THE NOTIFICATION")
   }
+ }
+
+
+ export const sendTokenServer = token =>{
+    if(localStorage.getItem("Toekn")) return
+
+    localStorage.setItem("Token" , token);
  }
